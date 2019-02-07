@@ -44,7 +44,7 @@
 
 	BOOL shouldAddDeallocObserver = NO;
 
-	objc_property_t property = class_getProperty(object_getClass(self), keyPathHead.UTF8String);
+	objc_property_t property = class_getProperty(object_getClass(self), (const char * _Nonnull) keyPathHead.UTF8String);
 	if (property != NULL) {
 		rac_propertyAttributes *attributes = rac_copyPropertyAttributes(property);
 		if (attributes != NULL) {

@@ -94,12 +94,12 @@
 	self = [self init];
 	if (self == nil) return nil;
 	
-	self.backingArray = [coder decodeObjectForKey:@keypath(self.backingArray)];
+	self.backingArray = [coder decodeObjectForKey:(NSString* _Nonnull) @keypath(self.backingArray)];
 	return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder {
-	if (self.backingArray != nil) [coder encodeObject:self.backingArray forKey:@keypath(self.backingArray)];
+	if (self.backingArray != nil) [coder encodeObject:self.backingArray forKey:(NSString* _Nonnull) @keypath(self.backingArray)];
 }
 
 

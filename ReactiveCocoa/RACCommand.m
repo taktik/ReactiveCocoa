@@ -66,7 +66,7 @@ const NSInteger RACCommandErrorNotEnabled = 1;
 }
 
 - (void)setAllowsConcurrentExecution:(BOOL)allowed {
-	[self willChangeValueForKey:@keypath(self.allowsConcurrentExecution)];
+	[self willChangeValueForKey:(NSString* _Nonnull) @keypath(self.allowsConcurrentExecution)];
 
 	if (allowed) {
 		OSAtomicOr32Barrier(1, &_allowsConcurrentExecution);
@@ -74,7 +74,7 @@ const NSInteger RACCommandErrorNotEnabled = 1;
 		OSAtomicAnd32Barrier(0, &_allowsConcurrentExecution);
 	}
 
-	[self didChangeValueForKey:@keypath(self.allowsConcurrentExecution)];
+	[self didChangeValueForKey:(NSString* _Nonnull) @keypath(self.allowsConcurrentExecution)];
 }
 
 - (NSArray *)activeExecutionSignals {
@@ -90,9 +90,9 @@ const NSInteger RACCommandErrorNotEnabled = 1;
 		// The KVO notification has to be generated while synchronized, because
 		// it depends on the index remaining consistent.
 		NSIndexSet *indexes = [NSIndexSet indexSetWithIndex:_activeExecutionSignals.count];
-		[self willChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@keypath(self.activeExecutionSignals)];
+		[self willChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:(NSString* _Nonnull) @keypath(self.activeExecutionSignals)];
 		[_activeExecutionSignals addObject:signal];
-		[self didChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@keypath(self.activeExecutionSignals)];
+		[self didChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:(NSString* _Nonnull) @keypath(self.activeExecutionSignals)];
 	}
 }
 
@@ -109,9 +109,9 @@ const NSInteger RACCommandErrorNotEnabled = 1;
 
 		if (indexes.count == 0) return;
 
-		[self willChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@keypath(self.activeExecutionSignals)];
+		[self willChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:(NSString* _Nonnull) @keypath(self.activeExecutionSignals)];
 		[_activeExecutionSignals removeObjectsAtIndexes:indexes];
-		[self didChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@keypath(self.activeExecutionSignals)];
+		[self didChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:(NSString* _Nonnull) @keypath(self.activeExecutionSignals)];
 	}
 }
 
